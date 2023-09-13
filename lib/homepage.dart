@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,6 +6,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> products = [
+      'images/vegetable.jpeg',
+      'images/plants.jpeg',
+      'images/fruits.jpeg'
+    ];
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -77,34 +83,42 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Image.asset('images/vegetable.jpeg'),
-                height: 100,
-                width: 100,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Image.asset('images/plnt.jpeg'),
-                height: 100,
-                width: 100,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Image.asset('images/fruits.jpeg'),
-                height: 100,
-                width: 100,
-              ),
-            )
-          ],
+        Container(
+          height: 200,
+          child: CarouselSlider(
+              items: products
+                  .map((e) => Container(
+                        child: Center(
+                          child: Image.asset(e),
+                        ),
+                      ))
+                  .toList(),
+              options: CarouselOptions(
+                  autoPlay: true, aspectRatio: 2, enlargeCenterPage: true)),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Container(
+          //     child: Image.asset('images/vegetable.jpeg'),
+          //     height: 100,
+          //     width: 100,
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Container(
+          //     child: Image.asset('images/plnt.jpeg'),
+          //     height: 100,
+          //     width: 100,
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Container(
+          //     child: Image.asset('images/fruits.jpeg'),
+          //     height: 100,
+          //     width: 100,
+          //   ),
+          // )
         ),
         Text("Popular Vegetables"),
         SizedBox(
